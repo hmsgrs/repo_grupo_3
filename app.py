@@ -1,4 +1,24 @@
 
+# Developer 3 - Parte 1
+'''
+Generamos Variables dependientes e independientes
+'''
+variables=['Pclass', 'Age', 'Sex', 'SibSp', 'Parch', 'Fare', 'CabinBool', 'Embarked_C',
+'Embarked_S', 'Embarked_Q']
+X = train_df[variables]
+y = train_df['Survived']
+# Developer 3 - Parte 2
+'''
+Creamos el modelo
+'''
+X = train_df[['Pclass', 'Age', 'Sex', 'SibSp', 'Parch', 'Fare', 'CabinBool', 'Embarked_C',
+'Embarked_S', 'Embarked_Q]]
+y = train_df[[Survived']]
+X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=0)
+model = RandomForestClassifier(n_estimators=100, random_state=0)
+model.fit(X_train, y_train)
+
+
 '''
 Importamos librerías
 '''
@@ -46,7 +66,7 @@ dead_embark = train_df[train_df['Survived']==0]['Embarked'].value_counts(sort=Fa
 st.write('Visualización del modelo y datos')
 st.write('Importancia de características en el modelo')
 st.bar_chart(importances)
-=======
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -84,5 +104,6 @@ prefix='Embarked')], axis=1)
 test_df = pd.concat([test_df, pd.get_dummies(test_df['Embarked'], prefix='Embarked')],
 axis=1)
 test_df['Fare'].fillna(test_df['Fare'].dropna().mean(), inplace=True)
+
 
 
