@@ -26,3 +26,17 @@ pd.DataFrame({'feature':X_train.columns,'importance':np.round(model.feature_impo
 ces_,3)})
 importances =
 importances.sort_values('importance',ascending=False).set_index('feature')
+# Developer 3 - Parte 4
+'''
+Visualizamos la variable Age
+'''
+bins = [0, 10, 20, 30, 40, 50, 60, 70, 80]
+train_df['AgeGroup'] = pd.cut(train_df['Age'], bins)
+survived_age = train_df[train_df['Survived']==1]['AgeGroup'].value_counts(sort=False)
+dead_age = train_df[train_df['Survived']==0]['AgeGroup'].value_counts(sort=False)
+age_df = pd.DataFrame([survived_age,dead_age],index=['Survived','Dead'])
+age_df.plot(kind='bar', stacked=True)
+plt.xlabel('Age Group')
+plt.ylabel('Number of passengers')
+plt.title('Distribution of passengers by age and survival')
+st.pyplot()
